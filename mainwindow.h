@@ -66,7 +66,7 @@ public:
     int plot();
 
 private slots:
-  //void on_setup_serial_port_clicked();
+
   void read_from_arduino();
   //void send_to_arduino();
   //void send_to_arduino(const QString &arg0);
@@ -76,6 +76,8 @@ private slots:
 
 
     void on_setup_serial_port_clicked();
+
+    void on_plot_clicked();
 
 private:
     Ui::MainWindow *ui;
