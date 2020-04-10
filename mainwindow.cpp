@@ -73,28 +73,34 @@ void MainWindow::read_from_arduino()
   float value_b = list.at(1).toFloat();
   qDebug() <<value_a<<value_b;
   ui->plainTextEdit->insertPlainText(QString::number(count)+" "+QString::number(list.at(0).toFloat())+" "+QString::number(list.at(1).toFloat())+"\n");
+  qDebug() << QPointF(count, value_a);
 
   ui->progressBar->setValue(list.at(0).toFloat());
   ui->lcdNumber->display(list.at(0).toFloat());
 
-
-  lineserie->append(count, value_a);
-
-  chart->removeSeries(lineserie);
   //chart->removeAxis(axisX);
   //chart->removeAxis(axisY);
 
-  axisX->setRange(0, count);
-  axisY->setRange(10,34);
-  chart->addSeries(lineserie);
+  lineserie->append(QPointF(count, value_a));
+  //qDebug() << QPoint(count, value_a);
+  //chart->removeSeries(lineserie);
+
+
+  //axisX->setRange(0, count);
+  //axisY->setRange(10,34);
+  //chart->addSeries(lineserie);
 
   //axisX->setRange(count-5, count);
 
+  //axisX->setRange(count-5, count+5);
+
+
   //chart->addAxis(axisX, Qt::AlignBottom);
   //chart->addAxis(axisY, Qt::AlignLeft);
+  //lineserie->attachAxis(axisX);
+  //lineserie->attachAxis(axisY);
+  //chart->createDefaultAxes();
 
-  lineserie->attachAxis(axisX);
-  lineserie->attachAxis(axisY);
 
 
 
@@ -169,6 +175,7 @@ int MainWindow::setup_plot()
 
 int MainWindow::plot()
 {
+  chart->createDefaultAxes();
   chart->removeSeries(lineserie);
   chart->addSeries(lineserie);
 
