@@ -82,6 +82,7 @@ void MainWindow::read_from_arduino()
   //chart->removeAxis(axisY);
 
   lineserie->append(QPointF(count, value_a));
+  lineserie_b->append(QPointF(count, value_b));
   //qDebug() << QPoint(count, value_a);
   //chart->removeSeries(lineserie);
 
@@ -121,7 +122,7 @@ int MainWindow::setup_plot()
 
   // Customize series
   QPen pen(QRgb(0xfdb157)); //select the color
-  //QPen pen_b(QRgb(0x0b157f)); //select the color
+  QPen pen_b(QRgb(0x0b157f)); //select the color
   //pen.setWidth(1);
   lineserie->setPen(pen);  //paint the serie with the color of the pen
   //lineserie_b->setPen(pen_b);
@@ -135,7 +136,7 @@ int MainWindow::setup_plot()
   */
 
   chart->addSeries(lineserie);
-  //chart->addSeries(lineserie_b);
+  chart->addSeries(lineserie_b);
 
   /*Con las siguientes lineas puedo controlar los ejes  */
   axisX->setGridLineVisible(false);
@@ -150,8 +151,8 @@ int MainWindow::setup_plot()
   lineserie->attachAxis(axisY);
 
 
-  //lineserie_b->attachAxis(axisX);
-  //lineserie_b->attachAxis(axisY);
+  lineserie_b->attachAxis(axisX);
+  lineserie_b->attachAxis(axisY);
 
   //axisX->setRange(0, 10);
   axisX->setTitleText("Data");
@@ -176,8 +177,14 @@ int MainWindow::setup_plot()
 int MainWindow::plot()
 {
   chart->createDefaultAxes();
+
+  //lineserie->attachAxis(axisX);
+
   chart->removeSeries(lineserie);
+  chart->removeSeries(lineserie_b);
+
   chart->addSeries(lineserie);
+  chart->addSeries(lineserie_b);
 
   chartview->setChart(chart);
   //ui->gridLayout->removeWidget(chartview);

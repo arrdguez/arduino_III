@@ -48,7 +48,7 @@ public:
 
     //begin plot declarations
       QLineSeries *lineserie = new QLineSeries();
-      //QLineSeries *lineserie_b = new QLineSeries();
+      QLineSeries *lineserie_b = new QLineSeries();
 
       QChart *chart = new QChart();
       QChartView *chartview = new QChartView();
@@ -68,10 +68,6 @@ public:
 private slots:
 
   void read_from_arduino();
-  //void send_to_arduino();
-  //void send_to_arduino(const QString &arg0);
-
-  //void on_lineEdit_textChanged(const QString &arg1);
 
 
 
